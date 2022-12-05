@@ -1,0 +1,34 @@
+<%= form_with(model: raw_image) do |form| %>
+  <% if raw_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(raw_image.errors.count, "error") %> prohibited this raw_image from being saved:</h2>
+
+      <ul>
+      <% raw_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :image, class: 'form-label' %>
+      <%= form.file_field :image, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if raw_image.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', raw_image, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if raw_image.persisted? %>
+      <%= link_to "Cancel", raw_image, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", raw_images_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

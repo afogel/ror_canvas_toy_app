@@ -1,0 +1,14 @@
+<div class="page-header">
+  <%= link_to raw_images_path, class: 'btn btn-default' do %>
+    All Raw_images
+  <% end %>
+  <%= link_to edit_raw_image_path(@raw_image), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show raw_image</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Image:</dt>
+  <dd><%= image_tag @raw_image.image.variant(resize_to([600,600])), class: "rounded" %></dd>
+</dl>
