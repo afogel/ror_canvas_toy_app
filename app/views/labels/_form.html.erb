@@ -1,0 +1,39 @@
+<%= form_with(model: label) do |form| %>
+  <% if label.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(label.errors.count, "error") %> prohibited this label from being saved:</h2>
+
+      <ul>
+      <% label.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :kind, class: 'form-label' %>
+      <%= form.text_field :kind, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if label.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', label, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if label.persisted? %>
+      <%= link_to "Cancel", label, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", labels_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

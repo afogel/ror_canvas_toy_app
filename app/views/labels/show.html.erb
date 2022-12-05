@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to labels_path, class: 'btn btn-default' do %>
+    All Labels
+  <% end %>
+  <%= link_to edit_label_path(@label), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show label</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @label.name %></dd>
+  <dt>Kind:</dt>
+  <dd><%= @label.kind %></dd>
+</dl>
