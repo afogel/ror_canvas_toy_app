@@ -39,7 +39,11 @@
           <i class="bi-save fas" id="save"></i> 
         <% end %>
       </div>
-      <%= image_tag @raw_image.image.variant(:large), class: "rounded" %>
+       <div 
+          style="height: 70vh;"
+          id="annotation-container"
+          data-annotation-canvas-target="canvas"
+        />
     </div>
     <%= form.hidden_field :landmarks, data: { annotation_canvas_target: 'landmarks'}, value: "[]" %>
   </div>
