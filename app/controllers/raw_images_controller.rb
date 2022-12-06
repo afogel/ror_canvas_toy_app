@@ -1,9 +1,10 @@
 class RawImagesController < ApplicationController
-  before_action :set_raw_image, only: %i[ show edit update destroy ]
+  before_action :set_raw_image, only: %i[show edit update destroy]
 
   # GET /raw_images or /raw_images.json
   def index
     @raw_images = RawImage.all
+    @label = Label.first
   end
 
   # GET /raw_images/1 or /raw_images/1.json
@@ -58,13 +59,14 @@ class RawImagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_raw_image
-      @raw_image = RawImage.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def raw_image_params
-      params.require(:raw_image).permit(:image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_raw_image
+    @raw_image = RawImage.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def raw_image_params
+    params.require(:raw_image).permit(:image)
+  end
 end

@@ -17,25 +17,17 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-    
         <th>Name</th>
-    
-
-            <th>Kind</th>
-            
+        <th>Kind</th>
       </tr>
     </thead>
 
     <tbody>
       <% @labels.each do |label| %>
         <%= content_tag :tr, id: dom_id(label), class: dom_class(label) do %>
-          
-            <td><%= link_to label.name, label %></td>
-          
-
-                      <td><%= label.kind %></td>
-          
-          
+          <td><%= link_to label.name, label %></td>
+          <td><%= label.kind %></td>
+          <td><%= link_to 'Annotations', annotation_editor_label_raw_image_path(label, @raw_image) %></td>
         <% end %>
       <% end %>
     </tbody>

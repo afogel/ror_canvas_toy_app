@@ -1,0 +1,46 @@
+<%= form_with(
+  model: [:annotation_editor, label, raw_image], 
+  class: 'd-flex flex-column page-header',
+) do |form| %>
+  <% if raw_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(raw_image.errors.count, "error") %> prohibited this raw_image from being saved:</h2>
+
+      <ul>
+      <% raw_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="d-flex flex-column " data-controller="annotation-canvas" 
+    data-annotation-canvas-image-url-value=<%= url_for(raw_image.image) %> 
+    id="annotation-controller">
+      <div class='d-flex flex-row justify-content-between'>
+        <div id="image-carousel">
+          <%= link_to annotation_editor_label_raw_image_path(label, previous_image) do  %>
+            <i class="bi-chevron-left fas my-5" id="previous-image"></i>
+          <% end %>
+          <span  class="my-5 px-2"><strong>Image:</strong> <%= raw_image.id %>
+          <%= link_to annotation_editor_label_raw_image_path(label, next_image) do  %>
+            <i class="bi-chevron-right fas my-5" id="next-image"></i>
+          <% end %>
+        </div>
+        <div id="label-carousel">
+          <%= link_to annotation_editor_label_raw_image_path(next_label, raw_image) do  %>
+            <i class="bi-chevron-left fas my-5" id="previous-image"></i>
+          <% end %>
+          <span class="my-5 px-2"><strong>Label:</strong> <%= label.name %>
+          <%= link_to annotation_editor_label_raw_image_path(previous_label, raw_image) do  %>
+            <i class="bi-chevron-right fas my-5" id="next-image"></i>
+          <% end %>
+        </div>
+        <%= form.button class: "btn btn-primary btn-lg my-4", style:"--bs-btn-padding-x: 3rem; --bs-btn-padding-y: 0.25rem;" do %>
+          <i class="bi-save fas" id="save"></i> 
+        <% end %>
+      </div>
+      <%= image_tag @raw_image.image.variant(:large), class: "rounded" %>
+    </div>
+    <%= form.hidden_field :landmarks, data: { annotation_canvas_target: 'landmarks'}, value: "[]" %>
+  </div>
+<% end %>

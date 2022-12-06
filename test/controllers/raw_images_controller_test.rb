@@ -17,7 +17,7 @@ class RawImagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create raw_image" do
     assert_difference("RawImage.count") do
-      post raw_images_url, params: { raw_image: {  } }
+      post raw_images_url, params: {raw_image: {}}
     end
 
     assert_redirected_to raw_image_url(RawImage.last)
@@ -34,7 +34,7 @@ class RawImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update raw_image" do
-    patch raw_image_url(@raw_image), params: { raw_image: {  } }
+    patch raw_image_url(@raw_image), params: {raw_image: {}}
     assert_redirected_to raw_image_url(@raw_image)
   end
 

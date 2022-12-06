@@ -17,7 +17,7 @@ class LabelsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create label" do
     assert_difference("Label.count") do
-      post labels_url, params: { label: { kind: @label.kind, name: @label.name } }
+      post labels_url, params: {label: {kind: @label.kind, name: @label.name}}
     end
 
     assert_redirected_to label_url(Label.last)
@@ -34,7 +34,7 @@ class LabelsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update label" do
-    patch label_url(@label), params: { label: { kind: @label.kind, name: @label.name } }
+    patch label_url(@label), params: {label: {kind: @label.kind, name: @label.name}}
     assert_redirected_to label_url(@label)
   end
 

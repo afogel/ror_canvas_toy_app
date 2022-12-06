@@ -1,0 +1,10 @@
+<div class="page-header d-flex justify-content-sm-even">
+  <%= link_to raw_images_path, class: 'btn btn-default' do %>
+    All Images
+  <% end %>
+  <%= link_to labels_path, class: 'btn btn-default' do %>
+    All Labels
+  <% end %>
+</div>
+
+<%= render "form", label: @label, raw_image: @raw_image, next_image: @next_image, previous_image: @previous_image, next_label: @next_label, previous_label: @previous_label %>

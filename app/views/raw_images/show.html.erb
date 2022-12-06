@@ -10,5 +10,5 @@
 
 <dl class="dl-horizontal">
   <dt>Image:</dt>
-  <dd><%= image_tag @raw_image.image.variant(resize_to([600,600])), class: "rounded" %></dd>
+  <dd><%= image_tag @raw_image.image.variant(:large), class: "rounded" %></dd>
 </dl>
