@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "private": "true",
+  "name": "RoRCanvasDemo",
+  "private": null,
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.2.4",
@@ -12,6 +12,7 @@
     "bootstrap-icons": "^1.10.2",
     "esbuild": "^0.15.18",
     "esbuild-rails": "^1.0.3",
+    "eslint": "^7.32.0 || ^8.2.0",
     "konva": "^8.3.14",
     "local-time": "^2.1.0",
     "sass": "^1.56.1",
@@ -21,5 +22,14 @@
   "scripts": {
     "build": "node esbuild.config.js",
     "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  },
+  "version": "1.0.0",
+  "main": "app/javascript/controllers/index.js",
+  "repository": "git@github.com:afogel/ror_canvas_toy_app.git",
+  "author": "Ariel Fogel <fogeltine@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2"
   }
 }
