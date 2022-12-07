@@ -70,6 +70,11 @@ export default class extends Controller {
     this.group.moveToTop();
   }
 
+  reset() {
+    this.landmarksTarget.value = JSON.stringify([]);
+    this.drawAnnotation();
+  }
+
   disconnect() {
     // clean up the canvas when navigating away
     this.stage.destroy();

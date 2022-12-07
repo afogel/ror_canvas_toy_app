@@ -35,6 +35,13 @@
             <i class="bi-chevron-right fas my-5" id="next-image"></i>
           <% end %>
         </div>
+        <div class="btn btn-primary btn-lg my-4" 
+             style="--bs-btn-padding-x: 3rem; --bs-btn-padding-y: 0.25rem;"
+             data-action="pointerdown->annotation-canvas#reset"
+            >
+          <i class="bi-trash fas my-4" id="save"></i> 
+        </div>
+
         <%= form.button class: "btn btn-primary btn-lg my-4", style:"--bs-btn-padding-x: 3rem; --bs-btn-padding-y: 0.25rem;" do %>
           <i class="bi-save fas" id="save"></i> 
         <% end %>
