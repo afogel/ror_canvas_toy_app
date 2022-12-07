@@ -43,6 +43,7 @@
           style="height: 70vh;"
           id="annotation-container"
           data-annotation-canvas-target="canvas"
+          data-action="pointerdown->annotation-canvas#handleClick"
         />
     </div>
     <%= form.hidden_field :landmarks, data: { annotation_canvas_target: 'landmarks'}, value: "[]" %>

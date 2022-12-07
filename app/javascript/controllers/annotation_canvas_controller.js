@@ -42,8 +42,32 @@ export default class extends Controller {
       name: 'polygon',
     });
 
-    this.stage.add(this.polygon);
+    this.group.add(this.polygon);
+    this.drawAnnotation();
+  }
+
+  handleClick() {
+    const points = this.getCurrentPoints();
+    const coordX = this.group.getRelativePointerPosition().x;
+    const coordy = this.group.getRelativePointerPosition().y;
+    points[points.length] = [coordX, coordy];
+    this.landmarksTarget.value = JSON.stringify(points);
+    this.drawAnnotation();
+  }
+
+  getCurrentPoints({ flattened } = { flattened: false }) {
+    const points = JSON.parse(this.landmarksTarget.value)
+    if (flattened) return points.reduce((a, b) => a.concat(b), []);
+    return points;
+  }
+
+  drawAnnotation() {
+    this.polygon.remove();
+    this.polygon.points(this.getCurrentPoints({ flattened: true }));
+    this.group.destroyChildren();
+    this.group.add(this.polygon);
     this.polygon.draw();
+    this.group.moveToTop();
   }
 
   disconnect() {
