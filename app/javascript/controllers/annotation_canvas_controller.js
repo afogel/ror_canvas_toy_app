@@ -32,6 +32,7 @@ export default class extends Controller {
 
       // add the shape to the layer
       this.layer.add(this.image);
+      this.drawAnnotation();
     };
     this.polygon = new Konva.Line({
       stroke: '#00F1FF',
@@ -43,7 +44,6 @@ export default class extends Controller {
     });
 
     this.group.add(this.polygon);
-    this.drawAnnotation();
   }
 
   handleClick() {

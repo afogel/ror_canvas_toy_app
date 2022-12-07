@@ -53,6 +53,6 @@
           data-action="pointerdown->annotation-canvas#handleClick"
         />
     </div>
-    <%= form.hidden_field :landmarks, data: { annotation_canvas_target: 'landmarks'}, value: "[]" %>
+    <%= form.hidden_field :landmarks, data: { annotation_canvas_target: 'landmarks'}, value: "#{@annotation.landmarks || []}" %>
   </div>
 <% end %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :labels
   namespace :annotation_editor do
     resources :labels do
-      resources :raw_images, only: %i[show create update]
+      resources :raw_images, only: %i[show update]
     end
   end
 

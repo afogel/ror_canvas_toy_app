@@ -1,6 +1,6 @@
 class AnnotationEditor::RawImagesController < ApplicationController
-  before_action :set_raw_image, only: %i[show create update]
-  before_action :set_label, only: %i[show create update]
+  before_action :set_raw_image, only: %i[show update]
+  before_action :set_label, only: %i[show update]
 
   # GET annotation_editor/labels/1/raw_images/1
   def show
@@ -10,14 +10,25 @@ class AnnotationEditor::RawImagesController < ApplicationController
     @next_image = next_record(@images, @raw_image)
     @previous_label = previous_record(@labels, @label)
     @next_label = next_record(@labels, @label)
-  end
-
-  # POST annotation_editor/labels/1/raw_images
-  def create
+    @annotation = Annotation.find_by(
+      raw_image: @raw_image,
+      label: @label
+    ) || Annotation.new
   end
 
   # PATCH/PUT annotation_editor/labels/1/raw_images/1
   def update
+    @annotation = Annotation.find_by(
+      raw_image: @raw_image,
+      label: @label
+    ) || Annotation.new(raw_image: @raw_image, label: @label)
+    @annotation.landmarks = raw_image_params[:landmarks]
+    if @annotation.save
+      flash[:notice] = "Annotation saved!"
+    else
+      flash[:alert] = "There was an error saving your annotation"
+    end
+    redirect_to annotation_editor_label_raw_image_path(@label, @raw_image)
   end
 
   private
@@ -44,6 +55,6 @@ class AnnotationEditor::RawImagesController < ApplicationController
 
   def previous_record(collection, record)
     record_idx = collection.find_index(record)
-    record_idx - 1 <= 0 ? collection[-1] : collection[record_idx - 1]
+    record_idx - 1 < 0 ? collection[-1] : collection[record_idx - 1]
   end
 end
